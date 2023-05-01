@@ -1,0 +1,87 @@
+version: '3.7'
+
+services:
+  mybootnode:
+    hostname: mybootnode
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --nodekeyhex="37d571faed3af03f8302e1ddb940ca2f13010a1acf9443ba1507b93e5b36fcbd" --nodiscover --ipcdisable --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+  miner-1:
+    hostname: miner-1
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --bootnodes="enode://749bac3705e7d0c92c27ace288d911cf2798538edcb46a3f9d058093c80c3533be6668df41ecb1174dd9cf22c39b6c5ed7e0f1aa53ef7928679b506f80b0268e@mybootnode:30303" --mine --miner.threads=1 --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+  miner-2:
+    hostname: miner-2
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --bootnodes="enode://749bac3705e7d0c92c27ace288d911cf2798538edcb46a3f9d058093c80c3533be6668df41ecb1174dd9cf22c39b6c5ed7e0f1aa53ef7928679b506f80b0268e@mybootnode:30303" --mine --miner.threads=1 --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+  miner-3:
+    hostname: miner-3
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --bootnodes="enode://749bac3705e7d0c92c27ace288d911cf2798538edcb46a3f9d058093c80c3533be6668df41ecb1174dd9cf22c39b6c5ed7e0f1aa53ef7928679b506f80b0268e@mybootnode:30303" --mine --miner.threads=1 --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+  miner-4:
+    hostname: miner-4
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --bootnodes="enode://749bac3705e7d0c92c27ace288d911cf2798538edcb46a3f9d058093c80c3533be6668df41ecb1174dd9cf22c39b6c5ed7e0f1aa53ef7928679b506f80b0268e@mybootnode:30303" --mine --miner.threads=1 --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+  miner-5:
+    hostname: miner-5
+    env_file:
+      - .env
+    build:
+      context: .
+      args:
+        - ACCOUNT_PASSWORD=${ACCOUNT_PASSWORD}
+    command: --bootnodes="enode://749bac3705e7d0c92c27ace288d911cf2798538edcb46a3f9d058093c80c3533be6668df41ecb1174dd9cf22c39b6c5ed7e0f1aa53ef7928679b506f80b0268e@mybootnode:30303" --mine --miner.threads=1 --networkid=${NETWORK_ID} --netrestrict="172.16.254.0/28"
+    networks:
+      priv-eth-net:
+
+
+networks:
+  priv-eth-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.254.0/28
